@@ -12,7 +12,6 @@ log.setLevel(logging.DEBUG)
 
 API_HOST = 'https://jsonplaceholder.typicode.com'
 
-
 def list_posts(event, context):
     url = API_HOST + '/posts'
 

@@ -21,14 +21,15 @@ The service has a dependency on external package (`requests`) and it exposes 2 R
 ## Development
 | **Step** | **Command** |**Description**|
 |---|-------|------|
-|  1. | `mkvirtualenv posts` | Create virtual environment |
-|  2. | `pip install -r requirements.txt` | Install dependencies|
+|  1. | `virtualenv posts` | Create virtual environment |
+|  2. | `source posts/bin/activate` | Activate |
+|  3. | `pip install -t vendored -r requirements.txt` | Install dependencies|
 
 
 ## Deployment
 Create dependencies folder for packaging
 
-    pip install -t vendored -r requirements.txt
+    pip install -r requirements.txt
 
 And... deploy!
  
@@ -38,10 +39,10 @@ And... deploy!
 You can trigger a function: 
 
 	# Invoke function without input
-	sls invoke -f listposts
+	sls invoke -f listPosts
 	
 	# Provide input
-	sls invoke -f getpost -p event.json
+	sls invoke -f getPost -p event.json
 	
 or
 
@@ -77,6 +78,3 @@ Information about the service (stage, region, endpoints, functions):
 Run a specific function with a provided input and get the logs
 
 	sls invoke -f <function-name> -p event.json -l
-
-# Credits
-[JSONPlaceholder](https://jsonplaceholder.typicode.com) by [@typicode](https://github.com/typicode) is used for the posts backend.
