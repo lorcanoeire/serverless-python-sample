@@ -18,33 +18,8 @@ provider:
   runtime: python2.7
   memorySize: 128
   region: ap-southeast-2
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-
-# you can overwrite defaults here
-#defaults:
-#  stage: dev
-#  region: us-east-1
-
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#  exclude:
-#    - exclude-me.js
-#  artifact: my-service-code.zip
+  ##apiKeys:
+  ##- api-key-12345678910
 
 functions:
   listPosts:
@@ -53,9 +28,7 @@ functions:
       - http:
           path: posts
           method: get
-#      - s3: ${env.BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
+          #private: true
 
   getPost:
     handler: handler.get_post
@@ -63,6 +36,15 @@ functions:
       - http:
           path: posts/{id}
           method: get
+          #private: true
+
+  getInvoiceThreshold:
+    handler: handler.get_invoice_threshold
+    events:
+      - http:
+          path: invoicesthreshold
+          method: get
+          #private: true
 
 # you can add CloudFormation resource templates here
 #resources:

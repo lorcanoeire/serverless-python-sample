@@ -16,11 +16,30 @@ def list_posts(event, context):
     url = API_HOST + '/posts'
 
     log.debug('calling ' + url)
-    return requests.get(url).json()
-
+    response = {
+        "statusCode": 200,
+        "headers": { "headerName": "headerValue"},
+        "body": requests.get(url).json()
+    }
+    return response
 
 def get_post(event, context):
     url = API_HOST + '/posts/' + event['path']['id']
 
     log.debug('calling ' + url)
-    return requests.get(url).json()
+    response = {
+        "statusCode": 200,
+        "headers": { "headerName": "headerValue"},
+        "body": requests.get(url).json()
+    }
+    return response
+
+def get_invoice_threshold(event, context):
+
+    log.debug('getting invoice threshold')
+    response = {
+        "statusCode": 200,
+        "headers": {"headerName": "headerValue"},
+        "body": "350"
+    }
+    return response
